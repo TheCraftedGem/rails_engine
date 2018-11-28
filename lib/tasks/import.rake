@@ -41,9 +41,8 @@ require 'csv'
           result:                       row[:result],
           created_at:                   row[:created_at],
           updated_at:                   row[:updated_at])
-      end
+        end
       
       puts " created #{Transaction.count} transactions!"
-  
     end
   end

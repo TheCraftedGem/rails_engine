@@ -3,6 +3,11 @@
     "coverage": {
       "/Users/millstone/Turing/3Module/rails_engine/app/models/customer.rb": [
         1,
+        1,
+        null,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/millstone/Turing/3Module/rails_engine/app/models/application_record.rb": [
@@ -19,6 +24,13 @@
       ],
       "/Users/millstone/Turing/3Module/rails_engine/app/models/invoice_item.rb": [
         1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
         null
       ],
       "/Users/millstone/Turing/3Module/rails_engine/spec/models/invoice_spec.rb": [
@@ -29,6 +41,13 @@
         null
       ],
       "/Users/millstone/Turing/3Module/rails_engine/app/models/invoice.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
         1,
         null
       ],
@@ -41,6 +60,11 @@
       ],
       "/Users/millstone/Turing/3Module/rails_engine/app/models/item.rb": [
         1,
+        1,
+        null,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/millstone/Turing/3Module/rails_engine/spec/models/merchant_spec.rb": [
@@ -48,9 +72,27 @@
         null,
         1,
         1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
         null
       ],
       "/Users/millstone/Turing/3Module/rails_engine/app/models/merchant.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
         1,
         null
       ],
@@ -62,6 +104,11 @@
         null
       ],
       "/Users/millstone/Turing/3Module/rails_engine/app/models/transaction.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
         1,
         null
       ],
@@ -85,12 +132,14 @@
         1,
         1,
         1,
-        null,
         1,
         null,
         1,
+        null,
         1,
         1,
+        1,
+        null,
         null,
         null
       ],
@@ -135,14 +184,16 @@
         null,
         1,
         1,
-        1,
-        null,
-        1,
-        1,
         null,
         1,
         null,
         1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
         null,
         1,
         1,
@@ -260,6 +311,12 @@
         null,
         null
       ],
+      "/Users/millstone/Turing/3Module/rails_engine/app/serializers/merchant_serializer.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/millstone/Turing/3Module/rails_engine/app/controllers/api/v1/transactions_controller.rb": [
         1,
         1,
@@ -268,6 +325,6 @@
         null
       ]
     },
-    "timestamp": 1543302279
+    "timestamp": 1543386433
   }
 }
