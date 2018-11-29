@@ -45,16 +45,102 @@ describe "Merchants API" do
     expect(merchant.name).to_not eq(previous_name)
     expect(merchant.name).to eq("Sledge")
   end
+  it "can find a merchant name" do
+    id = create(:merchant).id.to_s
 
-  # it "can destroy a merchant" do
-  #   merchant = create(:merchant)
+    get "/api/v1/merchants/find?id = #{id}"
+
+    merchant = JSON.parse(response.body)
+
+
+    expect(response).to be_successful
+    expect(merchant["data"]["id"]).to eq(id)
+  end
+  it "can find a merchant name" do
+    name = create(:merchant).name
+    get "/api/v1/merchants/find?name=#{name}"
+
+    merchant = JSON.parse(response.body)
+    expect(response).to be_successful
+    expect(merchant["data"]["attributes"]["name"]).to eq("Mona Lisa")
+  end
+
+  it "can find a merchant by created date" do
+    first_merch = create(:merchant, created_at: '2012-03-27 14:53:58 UTC')
   
-  #   expect(Merchant.count).to eq(1)
+    get "/api/v1/merchants/find?created_at=#{first_merch.created_at}"
+
+    merchant = JSON.parse(response.body)
+    expect(response).to be_successful
+    expect(merchant["data"]["attributes"]["name"]).to eq(first_merch.name)
+  end
+
+  it "can find a merchant by updated" do
+    first_merch = create(:merchant, updated_at: '2012-03-27 14:53:58 UTC')
+    get "/api/v1/merchants/find?updated_at=#{first_merch.updated_at}"
+
+    merchant = JSON.parse(response.body)
   
-  #   delete "/api/v1/merchants/#{merchant.id}"
+    expect(response).to be_successful
+    expect(merchant["data"]["attributes"]["name"]).to eq(first_merch.name)
+  end
+
+  it "can find all merchants by name  with finder" do
+    first_merch = create(:merchant)
   
-  #   expect(response).to be_successful
-  #   expect(Merchant.count).to eq(0)
-  #   expect{Merchant.find(merchant.id)}.to raise_error(ActiveRecord::RecordNotFound)
-  # end
+    get "/api/v1/merchants/find_all?name=#{first_merch.name}"
+
+    merchant = JSON.parse(response.body)
+  
+    expect(response).to be_successful
+
+    expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
+  end
+
+  it "can find all merchants by id  with finder" do
+    id = create(:merchant).id.to_s
+  
+    get "/api/v1/merchants/find_all?id=#{id}"
+
+    merchant = JSON.parse(response.body)
+  
+    expect(response).to be_successful
+
+    expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
+  end
+
+  it "can find all merchants by created_at  with finder" do
+    created_at = create(:merchant, created_at: '2012-03-27 14:53:58 UTC')
+   
+    get "/api/v1/merchants/find_all?created_at=#{created_at.created_at}"
+    
+    merchant = JSON.parse(response.body)
+    
+    expect(response).to be_successful
+
+    expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
+  end
+
+  it "can find all merchants by updated_at  with finder" do
+    merch = create(:merchant, updated_at: '2012-03-27 14:53:58 UTC')
+  
+    get "/api/v1/merchants/find_all?updated_at=#{merch.updated_at}"
+    
+    merchant = JSON.parse(response.body)
+
+    expect(response).to be_successful
+    expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
+  end
+
+#  xit "can find all merchants by updated_at  with finder" do
+#     merch = create(:merchant, updated_at: '2012-03-27 14:53:58 UTC')
+  
+#     get "/api/v1/merchants/random"
+    
+#     merchant = JSON.parse(response.body)
+    
+#     expect(response).to be_successful
+
+#     expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
+#   end
 end

@@ -6,4 +6,15 @@ class Invoice < ApplicationRecord
   has_many :invoice_items
   has_many :transactions
   has_many :items, through: :invoice_items
+
+
+  def revenue_by_date(date)
+    Invoice.select("SUM(invoice_items.quantity*invoice_items.unit_price) AS revenue").
+    joins(:invoice_items, :transactions).
+    merge(Transaction.unscoped.successful).
+    group("invoice_items.id").
+    where("cast(invoices.created_at AS text) Like #{date}").
+    pluck("SUM(invoice_items.quantity*invoice_items.unit_price) AS revenue").
+    sum
+  end
 end
