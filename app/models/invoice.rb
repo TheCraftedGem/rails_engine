@@ -17,13 +17,4 @@ class Invoice < ApplicationRecord
       pluck("SUM(invoice_items.quantity*invoice_items.unit_price) AS revenue").
       sum
   end
-
-  def self.best_day(x)
-    select("invoices.created_at, sum(invoice_items.quantity) AS units")
-      .joins(:invoice_items)
-      .where("invoice_items.item_id = #{x}")
-      .group("invoices.id")
-      .order("units desc, invoices.created_at desc")
-      .first
-  end
 end

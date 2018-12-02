@@ -15,10 +15,10 @@ RSpec.describe Merchant, type: :model do
  
   describe 'business intel' do
     it ".most_revenue" do
-      merchant1 = create(:merchant, name: 'Andy')
-      merchant2 = create(:merchant, name: 'Bob')
-      merchant3 = create(:merchant, name: 'Charles')
-      merchant4 = create(:merchant, name: 'Dave')
+      merchant1 = create(:merchant, name: 'Angie')
+      merchant2 = create(:merchant, name: 'Glen')
+      merchant3 = create(:merchant, name: 'Mark')
+      merchant4 = create(:merchant, name: 'Booth')
       invoice1 = create(:invoice, merchant: merchant1)
       invoice2 = create(:invoice, merchant: merchant2)
       invoice3 = create(:invoice, merchant: merchant3)
@@ -43,10 +43,10 @@ end
   
   describe 'business intel' do
     it ".most_items" do
-      merchant1 = create(:merchant, name: 'Andy')
-      merchant2 = create(:merchant, name: 'Bob')
-      merchant3 = create(:merchant, name: 'Charles')
-      merchant4 = create(:merchant, name: 'Dave')
+      merchant1 = create(:merchant, name: 'Angie')
+      merchant2 = create(:merchant, name: 'Glen')
+      merchant3 = create(:merchant, name: 'Mark')
+      merchant4 = create(:merchant, name: 'Booth')
       invoice1 = create(:invoice, merchant: merchant1)
       invoice2 = create(:invoice, merchant: merchant2)
       invoice3 = create(:invoice, merchant: merchant3)

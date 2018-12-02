@@ -8,6 +8,6 @@ describe "Transactions API" do
 
     expect(response).to be_successful
     transactions = JSON.parse(response.body)
-    expect(transactions.count).to eq(3)
+    expect(transactions["data"].count).to eq(3)
   end
 end
