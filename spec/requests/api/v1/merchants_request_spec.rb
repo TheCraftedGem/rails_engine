@@ -14,6 +14,7 @@ describe "Merchants API" do
   it "can get one merchant by its id" do
     id = create(:merchant).id.to_s
 
+
     get "/api/v1/merchants/#{id}"
 
     merchant = JSON.parse(response.body)
@@ -22,29 +23,29 @@ describe "Merchants API" do
     expect(response).to be_successful
     expect(merchant["data"]["id"]).to eq(id)
   end
-  it "can create a new merchant" do
-    merchant_params = { name: "Mona Lisa"}
+  # it "can create a new merchant" do
+  #   merchant_params = { name: "Mona Lisa"}
   
-    post "/api/v1/merchants", params: {merchant: merchant_params}
-    merchant = Merchant.last
+  #   post "/api/v1/merchants", params: {merchant: merchant_params}
+  #   merchant = Merchant.last
   
-    assert_response :success
-    expect(response).to be_successful
-    expect(merchant.name).to eq(merchant_params[:name])
-  end
+  #   assert_response :success
+  #   expect(response).to be_successful
+  #   expect(merchant.name).to eq(merchant_params[:name])
+  # end
 
-  it "can update an existing merchant" do
-    id = create(:merchant).id
-    previous_name = Merchant.last.name
-    merchant_params = { name: "Sledge" }
+  # it "can update an existing merchant" do
+  #   id = create(:merchant).id
+  #   previous_name = Merchant.last.name
+  #   merchant_params = { name: "Sledge" }
   
-    put "/api/v1/merchants/#{id}", params: {merchant: merchant_params}
-    merchant = Merchant.find_by(id: id)
+  #   put "/api/v1/merchants/#{id}", params: {merchant: merchant_params}
+  #   merchant = Merchant.find_by(id: id)
   
-    expect(response).to be_successful
-    expect(merchant.name).to_not eq(previous_name)
-    expect(merchant.name).to eq("Sledge")
-  end
+  #   expect(response).to be_successful
+  #   expect(merchant.name).to_not eq(previous_name)
+  #   expect(merchant.name).to eq("Sledge")
+  # end
   it "can find a merchant name" do
     id = create(:merchant).id.to_s
 
@@ -132,15 +133,14 @@ describe "Merchants API" do
     expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
   end
 
-#  xit "can find all merchants by updated_at  with finder" do
-#     merch = create(:merchant, updated_at: '2012-03-27 14:53:58 UTC')
+ it "can find all merchants by updated_at  with finder" do
+    merch = create(:merchant, updated_at: '2012-03-27 14:53:58 UTC')
   
-#     get "/api/v1/merchants/random"
+    get "/api/v1/merchants/random"
     
-#     merchant = JSON.parse(response.body)
+    merchant = JSON.parse(response.body)
     
-#     expect(response).to be_successful
-
-#     expect(merchant["data"][0]["attributes"]["name"]).to eq("Mona Lisa")
-#   end
+    expect(response).to be_successful
+    expect(merchant["data"]["attributes"]["name"]).to eq("Mona Lisa")
+  end
 end

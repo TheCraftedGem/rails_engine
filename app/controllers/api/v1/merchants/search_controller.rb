@@ -5,7 +5,11 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def show
-    render json: MerchantSerializer.new(Merchant.find_by(search_params))
+    if search_params.empty? 
+      render json: MerchantSerializer.new(Merchant.find_by(search_params))
+    else
+      render json: MerchantSerializer.new(Merchant.random)
+    end
   end
 
 
