@@ -23,4 +23,12 @@ class Merchant < ApplicationRecord
     .order("total_items desc")
     .limit(x)
   end
+
+  def self.revenue_by_date(x)
+    Invoice.unscoped
+      .joins(:invoice_items, :transactions)
+      .merge(Transaction.unscoped.success)
+      .where("cast(invoices.created_at AS text) Like ?", "#{x}%")
+      .sum("invoice_items.quantity*invoice_items.unit_price")
+	end
 end
