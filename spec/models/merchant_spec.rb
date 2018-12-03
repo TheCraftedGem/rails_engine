@@ -91,6 +91,7 @@ end
 
       expect(Merchant.revenue_by_date('2018-04-20')).to eq(80000000)
     end
+    
   end
 end
 
