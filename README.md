@@ -38,6 +38,12 @@ Here are all the Gems used in this repo:
  gem 'listen', '>= 3.0.5', '< 3.2'
  gem 'spring'
  gem 'spring-watcher-listen', '~> 2.0.0'
+ 
+ # Contributing 
+ 
+ If you'd like to contribute a feature to this project:
+ 
+ First Fork this repo, then clone it down, and checkout to a new branch. Then make a pull request when your feature is complete, make sure your code is 100% Tested otherwise the request will be denied, also if you have any questions feel free to hit me up on github, and or email me at thecraftedgem@tuta.io.
 
 
 
