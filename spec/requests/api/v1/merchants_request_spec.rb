@@ -23,30 +23,7 @@ describe "Merchants API" do
     expect(response).to be_successful
     expect(merchant["data"]["id"]).to eq(id)
   end
-  # it "can create a new merchant" do
-  #   merchant_params = { name: "Mona Lisa"}
-  
-  #   post "/api/v1/merchants", params: {merchant: merchant_params}
-  #   merchant = Merchant.last
-  
-  #   assert_response :success
-  #   expect(response).to be_successful
-  #   expect(merchant.name).to eq(merchant_params[:name])
-  # end
-
-  # it "can update an existing merchant" do
-  #   id = create(:merchant).id
-  #   previous_name = Merchant.last.name
-  #   merchant_params = { name: "Sledge" }
-  
-  #   put "/api/v1/merchants/#{id}", params: {merchant: merchant_params}
-  #   merchant = Merchant.find_by(id: id)
-  
-  #   expect(response).to be_successful
-  #   expect(merchant.name).to_not eq(previous_name)
-  #   expect(merchant.name).to eq("Sledge")
-  # end
-  it "can find a merchant name" do
+  it "can find a merchant by id" do
     id = create(:merchant).id.to_s
 
     get "/api/v1/merchants/find?id = #{id}"
@@ -142,5 +119,29 @@ describe "Merchants API" do
     
     expect(response).to be_successful
     expect(merchant["data"]["attributes"]["name"]).to eq("Mona Lisa")
+  end
+  it "returns items associated with a merchant" do
+    merch1 = create(:merchant, name: "Randal")
+    create_list(:item, 10, merchant_id: merch1.id)
+    create_list(:item, 10)
+
+    get "/api/v1/merchants/:id/items?id=#{merch1.id}"
+
+    result = JSON.parse(response.body)
+    expect(response).to be_successful
+    expect(result["data"].count).to eq(10)
+    expect(result["data"].first["attributes"]["merchant_id"]).to eq(merch1.id)
+  end
+  it "returns invoices associated with a merchant" do
+    merch1 = create(:merchant, name: "Homes")
+    create_list(:invoice, 10, merchant_id: merch1.id)
+    create_list(:invoice, 10)
+
+    get "/api/v1/merchants/:id/invoices?id=#{merch1.id}"
+
+    result = JSON.parse(response.body)
+    expect(response).to be_successful
+    expect(result["data"].count).to eq(10)
+    expect(result["data"].first["attributes"]["merchant_id"]).to eq(merch1.id)
   end
 end
